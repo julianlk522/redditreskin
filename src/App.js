@@ -32,13 +32,13 @@ function App() {
     fetchSubreddit()    
   }, [subreddit])
 
-  if (loading) return <Spinner />
+  // if (loading) return <Spinner />
   
   return (
     // <RedditProvider>
         <>
         <header>
-          <input type="text" className="input" value="webdev"/>
+          <input type="text" className="input" value={subreddit} onChange={(e) => setSubreddit(e.target.value)}/>
         </header>
         {(posts !== null) 
           ? posts.map((post, index) => <Post key={index} postInfo={post.data}/>)
