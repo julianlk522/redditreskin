@@ -2,6 +2,7 @@ import React from 'react'
 // import RedditContext from '../RedditContext'
 
 
+
 function Header() {
     // const {initialState} = useContext(RedditContext)
 
