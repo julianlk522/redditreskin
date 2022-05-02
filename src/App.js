@@ -11,6 +11,10 @@ function App() {
   const [loading, setLoading] = useState(false)
   
   const redditURL = `https://www.reddit.com/r/${subreddit}.json`
+
+  const searchIcon = document.getElementById('searchIcon')
+  const searchCaption = document.getElementById('searchCaption')
+  const postsSection = document.getElementById('postsDiv')
   
   useEffect(() => {
     fetchSubreddit()    
@@ -26,6 +30,7 @@ function App() {
         if (jsonData !== null) {
           setPosts(jsonData.data.children)
           setLoading(false)
+          console.log(jsonData.data.children)
         }
     } catch (error) {
         console.log(error)
@@ -34,56 +39,74 @@ function App() {
   }
   
   const promptSubmit = () => {
-    const searchIcon = document.getElementById('searchIcon')
-    const searchCaption = document.getElementById('searchCaption')
-
     searchCaption.style.opacity = 1;
-    searchCaption.style.color = 'rgba(0, 0, 0, 0.5)';
+    // searchCaption.style.color = 'rgba(0, 0, 0, 0.5)';
     searchIcon.style.transform = 'scale(3)';
-    searchIcon.style.color = 'rgba(0, 0, 0, 0.5)';
+    // searchIcon.style.color = 'rgba(0, 0, 0, 0.5)';
   }
 
   const removePromptSubmit = () => {
-    const searchIcon = document.getElementById('searchIcon')
-    const searchCaption = document.getElementById('searchCaption')
-
     searchCaption.style.opacity = 0;
     searchIcon.style.transform = 'scale(2)';
-    searchIcon.style.color = 'white';
   }
   
-  document.addEventListener('keyup', e => {
-    if (e.code === 'Enter') {
-      e.preventDefault()
-      fetchSubreddit()
-    }
-  })
+  const iconHover = () => {
+    searchIcon.classList.add('searchIconShadow')
+  }
+
+  const iconLeave = () => {
+    searchIcon.classList.remove('searchIconShadow')
+
+  }
+  
+  // //  Submit with Enter
+  // document.addEventListener('keyup', e => {
+  //   if (e.code === 'Enter') {
+  //     fetchSubreddit()
+  //   }
+  // })
   
   return (
     // <RedditProvider>
         <>
-        <header>
-            <input type="text" id="input" value={subreddit} onChange={(e) => setSubreddit(e.target.value)}/>
+        <header 
+          onMouseOver={promptSubmit}
+          onMouseLeave={removePromptSubmit}
+        >
+            <input 
+              type="text" 
+              id="input" 
+              value={subreddit} 
+              onChange={(e) => setSubreddit(e.target.value)}
+            />
             <div id="search">
               <FaSearch
                 id="searchIcon"
-                onMouseOver={promptSubmit}
-                onMouseLeave={removePromptSubmit}
-                onClick={fetchSubreddit}
+                onClick={() => {
+                  fetchSubreddit()
+                  removePromptSubmit()
+                }}
+                onMouseOver={iconHover}
+                onMouseLeave = {iconLeave}
               />
-              <p id="searchCaption">Click the icon or hit spacebar to search!</p>
+              <p id="searchCaption">Click the icon to search!</p>
             </div>
+
+            {/* <div id="darkToggle">
+              <input type="checkbox" />
+              <span id="slider">Hello</span>
+            </div> */}
         </header>
 
         {(loading) && (
           <div className="loadingDiv">
-            <span className="loadingIcon"><FaReddit /></span>
+            <span id="loadingIcon"><FaReddit/></span>
             <h3>Posts Loading...</h3>
           </div>
         )}
         
         {(posts !== null) 
-          ? posts.map((post, index) => <Post key={index} postInfo={post.data}/>)
+          ? <div id="postsDiv">{posts.map((post, index) => <Post key={index} postInfo={post.data}/>)}</div>
           : ''
         }
         </>
@@ -92,3 +115,13 @@ function App() {
 }
 
 export default App;
+
+
+{/* 
+
+Moderator post Y/N
+Comments #
+distinguished: moderator / null
+
+
+ */}
