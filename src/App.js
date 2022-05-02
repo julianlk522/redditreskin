@@ -72,11 +72,12 @@ function App() {
     // <RedditProvider>
         <>
         <header 
+          id={darkMode ? 'headerDark' : 'headerLight'}
           onMouseOver={promptSubmit}
           onMouseLeave={removePromptSubmit}
         >
             {/* search area */}
-            
+
             <div id="searchArea">
               <input
                 type="text"
@@ -100,19 +101,35 @@ function App() {
 
             {/* darkMode slider */}
 
-            {!darkMode && (
-                <p id="darkModeCaption">Dark mode?  Click the slider</p>
-              )}
+            <div id="darkModeArea">
+              {!darkMode && (
+                  <p id="darkModeCaption">Prefer dark mode?  Click the slider</p>
+                )}
               
-            <div id="lightDarkSliderDiv">
-              {(darkMode) 
-                ? <MdOutlineDarkMode id="modeImg"/> 
-                : <MdOutlineLightMode id="modeImg"/>}
-              <div id="ball" 
-                onClick={() => {
-                  setDarkMode(!darkMode)
-                }}
-              ></div>
+              <div 
+                className='lightDarkSliderDiv' 
+                id={darkMode 
+                    ? 'lightDarkSliderDivDark'
+                    : 'lightDarkSliderDivLight'
+                }
+              >
+                {(darkMode)
+                  ? <MdOutlineDarkMode 
+                      className='modeImg' 
+                      id="modeImgDark"
+                    />
+                  : <MdOutlineLightMode 
+                      className='modeImg'
+                      id="modeImgLight"
+                    />}
+                <div 
+                  className='ball' 
+                  id={darkMode ? 'ballDark' : 'ballLight'}
+                  onClick={() => {
+                    setDarkMode(!darkMode)
+                  }}
+                ></div>
+              </div>
             </div>
                 
         </header>
