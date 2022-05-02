@@ -12,7 +12,9 @@ function Post({postInfo}) {
             <div id="postDetails">
                 <p>posted by <span id={postInfo.distinguished === 'moderator' ? 'authorNameMod' : 'authorName'}>{postInfo.author}</span></p>
                 <span id='commentsImg'>
-                    <FaComments />
+                    <FaComments style={{
+                        opacity: 0.5
+                    }}/>
                 </span>
                 <p id='commentsNumber'>{postInfo.num_comments > 1 ? `${postInfo.num_comments} comments` : '1 comment'}</p>
             </div>

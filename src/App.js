@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {FaSearch, FaReddit} from 'react-icons/fa'
+import {MdOutlineLightMode, MdOutlineDarkMode} from 'react-icons/md'
 // import {RedditProvider} from "./RedditContext";
 import Post from "./components/Post";
 import Header from "./components/Header";
@@ -9,6 +10,7 @@ function App() {
   const [subreddit, setSubreddit] = useState('webdev')
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
   
   const redditURL = `https://www.reddit.com/r/${subreddit}.json`
 
@@ -73,29 +75,46 @@ function App() {
           onMouseOver={promptSubmit}
           onMouseLeave={removePromptSubmit}
         >
-            <input 
-              type="text" 
-              id="input" 
-              value={subreddit} 
-              onChange={(e) => setSubreddit(e.target.value)}
-            />
-            <div id="search">
-              <FaSearch
-                id="searchIcon"
-                onClick={() => {
-                  fetchSubreddit()
-                  removePromptSubmit()
-                }}
-                onMouseOver={iconHover}
-                onMouseLeave = {iconLeave}
+            {/* search area */}
+            
+            <div id="searchArea">
+              <input
+                type="text"
+                id="input"
+                value={subreddit}
+                onChange={(e) => setSubreddit(e.target.value)}
               />
-              <p id="searchCaption">Click the icon to search!</p>
+              <div id="search">
+                <FaSearch
+                  id="searchIcon"
+                  onClick={() => {
+                    fetchSubreddit()
+                    removePromptSubmit()
+                  }}
+                  onMouseOver={iconHover}
+                  onMouseLeave = {iconLeave}
+                />
+                <p id="searchCaption">Click the icon to search!</p>
+              </div>
             </div>
 
-            {/* <div id="darkToggle">
-              <input type="checkbox" />
-              <span id="slider">Hello</span>
-            </div> */}
+            {/* darkMode slider */}
+
+            {!darkMode && (
+                <p id="darkModeCaption">Dark mode?  Click the slider</p>
+              )}
+              
+            <div id="lightDarkSliderDiv">
+              {(darkMode) 
+                ? <MdOutlineDarkMode id="modeImg"/> 
+                : <MdOutlineLightMode id="modeImg"/>}
+              <div id="ball" 
+                onClick={() => {
+                  setDarkMode(!darkMode)
+                }}
+              ></div>
+            </div>
+                
         </header>
 
         {(loading) && (
@@ -115,13 +134,3 @@ function App() {
 }
 
 export default App;
-
-
-{/* 
-
-Moderator post Y/N
-Comments #
-distinguished: moderator / null
-
-
- */}
