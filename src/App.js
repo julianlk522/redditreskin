@@ -16,7 +16,7 @@ function App() {
 
   const searchIcon = document.getElementById('searchIcon')
   const searchCaption = document.getElementById('searchCaption')
-  const postsSection = document.getElementById('postsDiv')
+  const darkModeCaption = document.getElementById('darkModeCaption')
   
   useEffect(() => {
     fetchSubreddit()    
@@ -60,6 +60,18 @@ function App() {
     searchIcon.classList.remove('searchIconShadow')
 
   }
+
+  const darkModeHover = () => {
+    if (!darkMode) {
+      darkModeCaption.style.opacity = 1;
+    } else {
+      darkModeCaption.style.opacity = 0;
+    }  
+  }
+
+  const darkModeLeave = () => {
+    if (darkModeCaption.style.opacity !== 0) darkModeCaption.style.opacity = 0;
+  }
   
   // //  Submit with Enter
   // document.addEventListener('keyup', e => {
@@ -81,7 +93,10 @@ function App() {
             <div id="searchArea">
               <input
                 type="text"
-                id="input"
+                className="input"
+                id={darkMode 
+                  ? 'inputDark'
+                  : 'inputLight'}
                 value={subreddit}
                 onChange={(e) => setSubreddit(e.target.value)}
               />
@@ -102,16 +117,18 @@ function App() {
             {/* darkMode slider */}
 
             <div id="darkModeArea">
-              {!darkMode && (
-                  <p id="darkModeCaption">Prefer dark mode?  Click the slider</p>
-                )}
-              
+              <p id="darkModeCaption">Prefer dark mode?  Click the slider</p>
+            
               <div 
                 className='lightDarkSliderDiv' 
                 id={darkMode 
                     ? 'lightDarkSliderDivDark'
-                    : 'lightDarkSliderDivLight'
-                }
+                    : 'lightDarkSliderDivLight'}
+                onClick={() => {
+                  setDarkMode(!darkMode)
+                }}
+                onMouseOver={darkModeHover}
+                onMouseLeave={darkModeLeave}
               >
                 {(darkMode)
                   ? <MdOutlineDarkMode 
@@ -125,9 +142,6 @@ function App() {
                 <div 
                   className='ball' 
                   id={darkMode ? 'ballDark' : 'ballLight'}
-                  onClick={() => {
-                    setDarkMode(!darkMode)
-                  }}
                 ></div>
               </div>
             </div>
@@ -135,14 +149,19 @@ function App() {
         </header>
 
         {(loading) && (
-          <div className="loadingDiv">
-            <span id="loadingIcon"><FaReddit/></span>
-            <h3>Posts Loading...</h3>
+          <div 
+            className="loadingDiv"
+            id={darkMode ? 'loadingDivDark' : 'loadingDivLight'}
+          >
+              <span 
+                className="loadingIcon"
+              ><FaReddit/></span>
+              <h3>Posts Loading...</h3>
           </div>
         )}
         
         {(posts !== null) 
-          ? <div id="postsDiv">{posts.map((post, index) => <Post key={index} postInfo={post.data}/>)}</div>
+          ? <div id="postsDiv">{posts.map((post, index) => <Post key={index} postInfo={post.data} darkMode={darkMode}/>)}</div>
           : ''
         }
         </>
