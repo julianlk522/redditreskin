@@ -1,18 +1,88 @@
-import React from 'react'
-// import RedditContext from '../RedditContext'
-
+import React, {useContext} from 'react'
+import RedditContext from '../RedditContext'
+import {FaSearch} from 'react-icons/fa'
+import {MdOutlineLightMode, MdOutlineDarkMode} from 'react-icons/md'
 
 
 function Header() {
-    // const {initialState} = useContext(RedditContext)
-
+    const {
+        darkMode, 
+        setDarkMode, 
+        subreddit,
+        setSubreddit,
+        promptSubmit, 
+        removePromptSubmit, 
+        iconHover, 
+        iconLeave, 
+        darkModeHover, 
+        darkModeLeave,
+        fetchSubreddit
+    } = useContext(RedditContext)
+    
     return (
-        <header>
-            <div>Search Reddit</div>
-            <input type="text" value={
-                // initialState.subreddit
-                'webdev'
-            }/>
+        <header 
+          id={darkMode ? 'headerDark' : 'headerLight'}
+          onMouseOver={promptSubmit}
+          onMouseLeave={removePromptSubmit}
+        >
+            {/* search area */}
+
+            <div id="searchArea">
+              <input
+                type="text"
+                className="input"
+                id={darkMode 
+                  ? 'inputDark'
+                  : 'inputLight'}
+                value={subreddit}
+                onChange={(e) => setSubreddit(e.target.value)}
+              />
+              <div id="search">
+                <FaSearch
+                  id="searchIcon"
+                  onClick={() => {
+                    fetchSubreddit()
+                    removePromptSubmit()
+                  }}
+                  onMouseOver={iconHover}
+                  onMouseLeave = {iconLeave}
+                />
+                <p id="searchCaption">Click the icon to search!</p>
+              </div>
+            </div>
+
+            {/* darkMode slider */}
+
+            <div id="darkModeArea">
+              <p id="darkModeCaption">Prefer dark mode?  Click the slider</p>
+            
+              <div 
+                className='lightDarkSliderDiv' 
+                id={darkMode 
+                    ? 'lightDarkSliderDivDark'
+                    : 'lightDarkSliderDivLight'}
+                onClick={() => {
+                  setDarkMode(!darkMode)
+                }}
+                onMouseOver={darkModeHover}
+                onMouseLeave={darkModeLeave}
+              >
+                {(darkMode)
+                  ? <MdOutlineDarkMode 
+                      className='modeImg' 
+                      id="modeImgDark"
+                    />
+                  : <MdOutlineLightMode 
+                      className='modeImg'
+                      id="modeImgLight"
+                    />}
+                <div 
+                  className='ball' 
+                  id={darkMode ? 'ballDark' : 'ballLight'}
+                ></div>
+              </div>
+            </div>
+                
         </header>
     )
 }
