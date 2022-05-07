@@ -21,18 +21,15 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: white;
 }
 
 #headerLight {
   background-image: linear-gradient(to right, #FE4880, #FFCE00);
-  color: white;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 #headerDark {
   background-image: linear-gradient(to left, #0079d2, #00197f);
-  color: white;
-  box-shadow: 0px 3px 6px rgba(255, 255, 255, 0.2);
 }
 
 #searchArea {
@@ -121,22 +118,21 @@ header:before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 50%;
+  border-radius: 2rem;
   padding: 3px;
   height: 3rem;
   width: 6rem;
+  background-color: white;
 }
 
 #lightDarkSliderDivDark {
-  background-color: white;
-  border: 1px solid black;
   filter: drop-shadow(1px 1px 1px rgb(F F F / 0.2));
+  border: 2px solid rgb(0, 0, 0);
 }
 
 #lightDarkSliderDivLight {
-  background-color: white;
-  border: 1px solid black;
   filter: drop-shadow(1px 1px 1px rgb(0 0 0 / 0.2));
+  border: 2px solid rgba(0, 0, 0, 0.5);
 }
 
 .ball {
@@ -144,15 +140,14 @@ header:before {
   position: absolute;
   height: 1.25rem;
   width: 1.25rem;
+  background-color: black;
 }
 
 #ballLight {
-  background-color: black;
   left: 1rem;
 }
 
 #ballDark {
-  background-color: black;
   right: 1rem;
 }
 
@@ -184,6 +179,7 @@ article {
 #articleDark {
   background-color: #000;
   color: #FFF;
+
 }
 
 #articleLight {
@@ -213,14 +209,24 @@ article p {
 
 #articleDark a h3 {
   color: white;
+  text-decoration: underline;
+  text-decoration-color: white;
 }
 
 #postDetails {
   display: flex;
 }
 
-#authorName:before, #authorNameMod:before {
+.authorName:before, .authorNameMod:before {
   content: 'u/';
+}
+
+.authorNameMod {
+  font-weight: 600;
+}
+
+.authorNameMod:after {
+  content: ' (M)';
 }
 
 #authorNameLight {
@@ -233,12 +239,10 @@ article p {
 
 #authorNameModLight {
   color: green;
-  font-weight: 600;
 }
 
 #authorNameModDark {
   color: #FE4880;
-  font-weight: 600;
 }
 
 #commentsImg {

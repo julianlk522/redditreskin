@@ -60,12 +60,15 @@ export const RedditProvider = ({children}) => {
     const darkModeHover = () => {
         if (!darkMode) {
             darkModeCaption.style.opacity = 1;
-        } else {
-            darkModeCaption.style.opacity = 0;
-        }  
+        }
     }
     
     const darkModeLeave = () => {
+        if (darkModeCaption.style.opacity !== 0) darkModeCaption.style.opacity = 0;
+    }
+
+    const darkModeClickHandle = () => {
+        setDarkMode(!darkMode)
         if (darkModeCaption.style.opacity !== 0) darkModeCaption.style.opacity = 0;
     }
     
@@ -86,7 +89,8 @@ export const RedditProvider = ({children}) => {
         iconHover,
         iconLeave,
         darkModeHover,
-        darkModeLeave
+        darkModeLeave,
+        darkModeClickHandle
 
     }}>
         {children}

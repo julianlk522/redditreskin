@@ -16,6 +16,7 @@ function Header() {
         iconLeave, 
         darkModeHover, 
         darkModeLeave,
+        darkModeClickHandle,
         fetchSubreddit
     } = useContext(RedditContext)
     
@@ -61,9 +62,7 @@ function Header() {
                 id={darkMode 
                     ? 'lightDarkSliderDivDark'
                     : 'lightDarkSliderDivLight'}
-                onClick={() => {
-                  setDarkMode(!darkMode)
-                }}
+                onClick={darkModeClickHandle}
                 onMouseOver={darkModeHover}
                 onMouseLeave={darkModeLeave}
               >

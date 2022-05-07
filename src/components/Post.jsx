@@ -13,6 +13,9 @@ function Post({postInfo, darkMode}) {
 
                 <div id="postDetails">
                     <p>posted by <span 
+                        className={postInfo.distinguished === 'moderator' 
+                        ? 'authorNameMod'
+                        : 'authorName'}
                         id={postInfo.distinguished === 'moderator' 
                             ? `authorNameMod${darkMode 
                                 ? 'Dark' 
