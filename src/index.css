@@ -85,6 +85,7 @@ header:before {
   margin: 0 2.5rem;
   transform: scale(2);
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .searchIconShadow {
@@ -123,6 +124,7 @@ header:before {
   height: 3rem;
   width: 6rem;
   background-color: white;
+  cursor: pointer;
 }
 
 #lightDarkSliderDivDark {

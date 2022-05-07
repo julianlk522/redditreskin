@@ -7,7 +7,7 @@ function Post({postInfo, darkMode}) {
         <article 
             id={darkMode ? 'articleDark' : 'articleLight'}
         >
-                <a href={postInfo.url} target="_blank">
+                <a href={`https://www.reddit.com${postInfo.permalink}`} target="_blank">
                     <h3>{postInfo.title}</h3>
                 </a>
 
