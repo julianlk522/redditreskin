@@ -7,11 +7,12 @@
 
 :root {
   --salmon: hsl(48, 100%, 50%);
-  --brightRed: hsl(342, 99%, 64%);
-  --darkTurquoise: hsl(205, 100%, 41%);
+  --redditRed: hsl(16, 100%, 50%);
+  --darkTurquoise: hsl(206, 100%, 41%);
   --mildDarkTurquoise: hsla(205, 100%, 41%, 0.5);
   --blueBlack: hsl(228, 100%, 25%);
   --whiteSmoke: hsl(0, 0%, 95%);
+  --midnightBlue: hsl(0, 0%, 13%);
 }
 
 html, body, #root {
@@ -34,7 +35,7 @@ header {
 }
 
 #headerLight {
-  background-image: linear-gradient(to left, var(--salmon), var(--brightRed));
+  background-image: linear-gradient(to left, var(--salmon), var(--redditRed));
 }
 
 #headerDark {
@@ -73,7 +74,7 @@ header {
 
 header:before {
   content: '/r/';
-  color: #FFF;
+  color: white;
   font-size: 2rem;
   font-weight: 600;
   font-style: italic;
@@ -94,12 +95,16 @@ header:before {
 #searchIcon {
   margin: 0 2.5rem;
   transform: scale(2);
-  transition: 0.5s;
+  transition: transform 0.5s;
   cursor: pointer;
 }
 
-.searchIconShadow {
-  filter: drop-shadow(1px 1px 1px rgb(0 0 0 / 0.2))
+.searchIconLight:hover {
+  filter: drop-shadow(0px 0px 3px rgb(0 0 0 / 0.2));
+}
+
+.searchIconDark:hover {
+  filter: drop-shadow(0px 0px 3px rgb(F F F / 0.5));
 }
 
 #searchCaption {
@@ -124,7 +129,7 @@ header:before {
   margin: 1rem;
 }
 
-.lightDarkSliderDiv {
+.sliderDiv {
   position: relative;
   display: flex;
   align-items: center;
@@ -135,16 +140,15 @@ header:before {
   width: 6rem;
   background-color: white;
   cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-#lightDarkSliderDivDark {
-  filter: drop-shadow(1px 1px 1px rgb(F F F / 0.2));
-  border: 2px solid rgb(0, 0, 0);
+#sliderDivLight:hover {
+  filter: drop-shadow(0px 0px 5px rgb(0 0 0 / 0.2));
 }
 
-#lightDarkSliderDivLight {
-  filter: drop-shadow(1px 1px 1px rgb(0 0 0 / 0.2));
-  border: 2px solid rgba(0, 0, 0, 0.5);
+#sliderDivDark:hover {
+  filter: drop-shadow(0px 0px 5px rgb(255 255 255 / 0.75));
 }
 
 .ball {
@@ -190,17 +194,17 @@ article {
 
 #articleDark {
   background-color: #000;
-  color: #FFF;
+  color: white;
 
 }
 
 #articleLight {
-  background-color: #FFF;
-  color: #212121;
+  background-color: white;
+  color: var(--midnightBlue);
 }
 
 #articleDark:nth-child(2n) {
-  background-color: #212121;
+  background-color: var(--midnightBlue);
 }
 
 #articleLight:nth-child(2n) {
@@ -208,7 +212,7 @@ article {
 }
 
 #articleLight:hover {
-  background-image: linear-gradient(to right, var(--salmon), #FFF);
+  background-image: linear-gradient(to right, var(--salmon), white);
 }
 
 #articleDark:hover {
@@ -254,7 +258,7 @@ article p {
 }
 
 #authorNameModDark {
-  color: var(--brightRed);
+  color: var(--redditRed);
 }
 
 #commentsImg {
@@ -289,11 +293,5 @@ article p {
   display: inline-block;
   transform: scale(2);
   margin: 1rem;
-  color: var(--brightRed);
+  color: var(--redditRed);
 }
-
-/* .spinner {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-} */

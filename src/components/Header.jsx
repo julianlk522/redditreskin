@@ -13,7 +13,7 @@ function Header() {
         promptSubmit, 
         removePromptSubmit, 
         iconHover, 
-        iconLeave, 
+        iconLeave,
         darkModeHover, 
         darkModeLeave,
         darkModeClickHandle,
@@ -40,7 +40,10 @@ function Header() {
               />
               <div id="search">
                 <FaSearch
-                  id="searchIcon"
+                  className = {darkMode 
+                    ? 'searchIconDark' 
+                    : 'searchIconLight'}
+                  id='searchIcon'
                   onClick={() => {
                     fetchSubreddit()
                     removePromptSubmit()
@@ -58,10 +61,10 @@ function Header() {
               <p id="darkModeCaption">Prefer dark mode?  Click the slider</p>
             
               <div 
-                className='lightDarkSliderDiv' 
+                className='sliderDiv' 
                 id={darkMode 
-                    ? 'lightDarkSliderDivDark'
-                    : 'lightDarkSliderDivLight'}
+                    ? 'sliderDivDark'
+                    : 'sliderDivLight'}
                 onClick={darkModeClickHandle}
                 onMouseOver={darkModeHover}
                 onMouseLeave={darkModeLeave}

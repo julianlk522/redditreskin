@@ -45,29 +45,24 @@ export const RedditProvider = ({children}) => {
         searchCaption.style.opacity = 0;
         searchIcon.style.transform = 'scale(2)';
     }
-      
-    const iconHover = () => {
-        searchIcon.classList.add('searchIconShadow')
-    }
-    
-    const iconLeave = () => {
-        searchIcon.classList.remove('searchIconShadow')
-    
-    }
     
     const darkModeHover = () => {
         if (!darkMode) {
-            darkModeCaption.style.opacity = 1;
+            darkModeCaption.style.opacity = 1
         }
     }
     
     const darkModeLeave = () => {
-        if (darkModeCaption.style.opacity !== 0) darkModeCaption.style.opacity = 0;
+        if (darkModeCaption.style.opacity !== 0) {
+            darkModeCaption.style.opacity = 0;
+        }
     }
 
     const darkModeClickHandle = () => {
         setDarkMode(!darkMode)
-        if (darkModeCaption.style.opacity !== 0) darkModeCaption.style.opacity = 0;
+        if (darkModeCaption.style.opacity !== 0) {
+            darkModeCaption.style.opacity = 0;
+        }
     }
     
     return <RedditContext.Provider 
@@ -84,8 +79,6 @@ export const RedditProvider = ({children}) => {
         fetchSubreddit,
         promptSubmit,
         removePromptSubmit,
-        iconHover,
-        iconLeave,
         darkModeHover,
         darkModeLeave,
         darkModeClickHandle
