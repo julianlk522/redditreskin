@@ -38,9 +38,7 @@ export const RedditProvider = ({children}) => {
     
     const promptSubmit = () => {
         searchCaption.style.opacity = 1;
-        // searchCaption.style.color = 'rgba(0, 0, 0, 0.5)';
         searchIcon.style.transform = 'scale(3)';
-        // searchIcon.style.color = 'rgba(0, 0, 0, 0.5)';
     }
     
     const removePromptSubmit = () => {
@@ -92,7 +90,8 @@ export const RedditProvider = ({children}) => {
         darkModeLeave,
         darkModeClickHandle
 
-    }}>
+        }}
+    >
         {children}
     </RedditContext.Provider>
 }

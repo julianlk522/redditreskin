@@ -5,6 +5,15 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
+:root {
+  --salmon: hsl(48, 100%, 50%);
+  --brightRed: hsl(342, 99%, 64%);
+  --darkTurquoise: hsl(205, 100%, 41%);
+  --mildDarkTurquoise: hsla(205, 100%, 41%, 0.5);
+  --blueBlack: hsl(228, 100%, 25%);
+  --whiteSmoke: hsl(0, 0%, 95%);
+}
+
 html, body, #root {
   width: 100%;
   height: 100%;
@@ -25,11 +34,11 @@ header {
 }
 
 #headerLight {
-  background-image: linear-gradient(to right, #FE4880, #FFCE00);
+  background-image: linear-gradient(to left, var(--salmon), var(--brightRed));
 }
 
 #headerDark {
-  background-image: linear-gradient(to left, #0079d2, #00197f);
+  background-image: linear-gradient(to left, var(--darkTurquoise), var(--blueBlack));
 }
 
 #searchArea {
@@ -51,14 +60,15 @@ header {
   border: none;
   appearance: none;
   transition: 0.5s;
+  cursor: text;
 }
 
 #inputDark:hover {
-  background-color: rgba(0, 121, 210, 0.5);
+  background-color: var(--mildDarkTurquoise);
 }
 
 #inputLight:hover {
-  background-color: #FFCE00;
+  background-color: var(--salmon);
 }
 
 header:before {
@@ -194,15 +204,15 @@ article {
 }
 
 #articleLight:nth-child(2n) {
-  background-color: #F3F3F3;
+  background-color: var(--whiteSmoke);
 }
 
 #articleLight:hover {
-  background-image: linear-gradient(to right, #FFCE00, #FFF);
+  background-image: linear-gradient(to right, var(--salmon), #FFF);
 }
 
 #articleDark:hover {
-  background-image: linear-gradient(to right, rgba(0, 121, 210, 0.6), #00197f);
+  background-image: linear-gradient(to right, var(--mildDarkTurquoise), var(--blueBlack));
 }
 
 article p {
@@ -232,11 +242,11 @@ article p {
 }
 
 #authorNameLight {
-  color: rgb(0, 121, 210);
+  color: var(--darkTurquoise);
 }
 
 #authorNameDark {
-  color: #FFCE00;
+  color: var(--salmon);
 }
 
 #authorNameModLight {
@@ -244,7 +254,7 @@ article p {
 }
 
 #authorNameModDark {
-  color: #FE4880;
+  color: var(--brightRed);
 }
 
 #commentsImg {
@@ -253,8 +263,8 @@ article p {
   margin-right: 1rem;
 }
 
-/* Loading */
 
+/* Loading */
 
 
 .loadingDiv {
@@ -279,7 +289,7 @@ article p {
   display: inline-block;
   transform: scale(2);
   margin: 1rem;
-  color: #FE4880;
+  color: var(--brightRed);
 }
 
 /* .spinner {
